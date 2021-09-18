@@ -1,22 +1,9 @@
-import fs from 'fs'
+import { MatchReader } from './MatchReader'
+import { Summary } from './Summary'
 
-const matches = fs.readFileSync('football.csv', {
-    encoding:'utf-8'
-}).split('\n').map((row: string) =>{
-    return row.split(',')
-})
+const matchReader = MatchReader.fromCsv('football.csv')
+matchReader.load()
 
-let manUnitedWins = 0
+const summary = Summary.winsAnalysisWithHtmlReport('Man United')
 
-const matchResult = {
-    HomeWin : 'H',
-    AwayWin : 'A',
-    DrawWin : 'D'
-}
-
-for(let match of matches) {
-    if(match[1]==='Man United' && match[5] === matchResult.HomeWin) manUnitedWins++
-    if(match[2]==='Man United' && match[5] === matchResult.AwayWin) manUnitedWins++
-}
-
-console.log(`Man united won ${manUnitedWins}`)
+summary.buildAndPrintReport(matchReader.matches)

@@ -4,7 +4,7 @@ In this project I am trying to create one reusable code for reading data from cs
 
 This is mainly based on TypeScript.
 
-This is a Demo project is for learning purpose.
+This is a Demo project for learning purpose.
 
 Run this project via following commands:
 
